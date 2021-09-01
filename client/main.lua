@@ -76,12 +76,6 @@ local EQ = function (a,b)
     end
 end
 
--- $ Hypernite hash spy fucker thing
-
-for i = 1, 500 do
-    hash('get hyper')
-end
-
 -- $ Main
 local rStr = rand()
 
