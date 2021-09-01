@@ -8,7 +8,7 @@ Inspired by Aztup's open source whitelist
 ]]
 
 --[[
-Copyright 2021 0x37
+Copyright 2021 0x37 enterprise
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -76,10 +76,16 @@ local EQ = function (a,b)
     end
 end
 
+-- $ Hypernite hash spy fucker thing
+
+for i = 1, 500 do
+    hash('get hyper')
+end
+
 -- $ Main
 local rStr = rand()
 
--- ! Add function names so it appears normal in constant dumps, very cool yes, secure this more okay
+-- ! Add function names so it appears normal in constant dumps, very cool yes, secure this more okay, this is just to make it harder to check hash
 local expRes = hash(rStr .. 'request' .. rStr .. 'table.foreach' .. rStr .. 'FindFirstChild' .. auth)
 
 -- ! Check if exploit has http request function
@@ -92,13 +98,11 @@ local response = http_request({
     Method = 'GET'
 })
 
-print(response.Body)
-print(expRes)
-
 if EQ(response.Body, expRes) then
     if EQ(response.StatusCode, 200) then
         if 1 ~= 1 then crash() end
         print('whitelisted')
+        print('Server Response:', response.Body)
     else
         crash()
     end
